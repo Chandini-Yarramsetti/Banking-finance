@@ -32,6 +32,6 @@ spec:
     app: Banking-app
   type: NodePort
   ports:
-    - nodePort: 31434
+    - nodePort: 56087
       port: 8070
       targetPort: 8070
