@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Banking-deployment
+  labels:
+    app: Banking-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: Banking-app
+  template:
+    metadata:
+      labels:
+        app: Bnaking-app
+    spec:
+      containers:
+        - name: Banking1
+          image: chandini/Banking
+          ports:
+            - containerPort: 8070
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: Bankingproject-svc-nodeport
+  labels:
+    app: Banking-app
+spec:
+  selector:
+    app: Banking-app
+  type: NodePort
+  ports:
+    - nodePort: 31434
+      port: 8070
+      targetPort: 8070
